@@ -18,13 +18,12 @@ public class Robot : MonoBehaviour
     {
         Vector3 position = m_CursorProjector.GetScreenProjectPosition(Input.mousePosition);
         MoveToPoint(position);
+
+        m_CursorProjector.SetReticlePosition(transform.position, position);
     }
 
     void MoveToPoint(Vector3 point) 
     {
-        //Vector3 newPosition = Vector3.Lerp(transform.position, point, Time.deltaTime);
-        //transform.position = newPosition;
-
         Vector3 direction = point - transform.position;
         direction = direction.normalized;
 
