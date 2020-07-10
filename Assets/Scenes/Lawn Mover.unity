@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: 512457399}
   - component: {fileID: 512457398}
   - component: {fileID: 512457397}
-  - component: {fileID: 512457400}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -298,21 +297,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30.000002, y: 0, z: 0}
---- !u!114 &512457400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512457396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f725101c6b28284e9aef433b08223c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ReticlePrefab: {fileID: 1154541058468263572, guid: e6e880c5454d24142a32645a50f345c2,
-    type: 3}
-  m_ReticleMaxDistance: 3
 --- !u!1 &599105887
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,8 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808e4a1621aefcc4ab285f2d4c7ff4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CursorProjector: {fileID: 512457400}
+  m_CursorProjector: {fileID: 0}
+  m_TotalEnergy: 100
   m_BaseSpeed: 20
+  m_AlternateScheme: 0
 --- !u!1 &727623903
 GameObject:
   m_ObjectHideFlags: 0

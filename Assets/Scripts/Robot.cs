@@ -4,34 +4,40 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public CursorProjector m_CursorProjector;
+    public float m_TotalEnergy = 100f;
     public float m_BaseSpeed = 2.0f;
+    public bool m_AlternateScheme = false;
 
     private Rigidbody m_Rigidbody;
+    private float m_CurrentEnergy;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Start()
     {
-        Vector3 position = m_CursorProjector.GetScreenProjectPosition(Input.mousePosition);
-        MoveToPoint(position);
-
-        m_CursorProjector.SetReticlePosition(transform.position, position);
+        m_CurrentEnergy = m_TotalEnergy;
     }
 
-    void MoveToPoint(Vector3 point) 
+    void Update()
     {
-        Vector3 direction = point - transform.position;
-        direction = direction.normalized;
+        Move();
+    }
 
-        m_Rigidbody.velocity = direction * m_BaseSpeed;
-
-        if (point == Vector3.zero) 
+    void Move() 
+    {
+        if (Input.GetKey(KeyCode.LeftArrow)) 
         {
-            Debug.Log(point);
+            transform.Rotate(0, -0.5f, 0);
         }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(0, 0.5f, 0);
+        }
+
+        m_Rigidbody.velocity = transform.forward * m_BaseSpeed;
     }
 }
