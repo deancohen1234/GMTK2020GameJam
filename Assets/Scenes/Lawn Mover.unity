@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 599105889}
   - component: {fileID: 599105890}
   - component: {fileID: 599105891}
+  - component: {fileID: 599105892}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -373,10 +374,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808e4a1621aefcc4ab285f2d4c7ff4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CursorProjector: {fileID: 0}
   m_TotalEnergy: 100
-  m_BaseSpeed: 20
-  m_AlternateScheme: 0
+  m_BaseSpeed: 10
+  m_BaseTurnSpeed: 1
+  m_SpeedBoostSpeed: 40
+--- !u!114 &599105892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599105887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b3f8080143298418d41d1cb629e6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpeedBoostTimeMinTime: 5
+  m_SpeedBoostTimeMaxTime: 10
+  m_BoostTime: 3
+  m_OnSpeedBoostStart:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSpeedBoostEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &727623903
 GameObject:
   m_ObjectHideFlags: 0
