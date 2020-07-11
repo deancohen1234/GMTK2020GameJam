@@ -215,6 +215,25 @@ public class GrassManager : MonoBehaviour
 
         return pixelCoord;
     }
+
+    public int GetCutGrass()
+    {
+        int cutGrass = 0;
+        for (int i = 0; i < m_AllGrassArray.Length; i++) 
+        {
+            if (m_AllGrassArray[i].m_IsCut == -1) 
+            {
+                cutGrass++;
+            }
+        }
+
+        return cutGrass;
+    }
+
+    public int GetTotalGrass() 
+    {
+        return m_AllGrassArray.Length;
+    }
 }
 
 public struct Grass 

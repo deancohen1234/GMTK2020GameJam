@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIManager: {fileID: 1866522446}
+  m_GrassManager: {fileID: 1506227948}
 --- !u!4 &354824876
 Transform:
   m_ObjectHideFlags: 0
@@ -2376,7 +2377,7 @@ GameObject:
   - component: {fileID: 1466225694}
   - component: {fileID: 1466225693}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: GrassText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2399,7 +2400,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000012159, y: -65.4}
-  m_SizeDelta: {x: 337.61792, y: 155.03412}
+  m_SizeDelta: {x: 492.89404, y: 155.03412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466225693
 MonoBehaviour:
@@ -2759,6 +2760,7 @@ MonoBehaviour:
   m_EnergyBar: {fileID: 550544201}
   m_SmoothSpeed: 15
   m_EndScreen: {fileID: 864459588}
+  m_GrassCutText: {fileID: 1466225693}
 --- !u!1 &2041924110
 GameObject:
   m_ObjectHideFlags: 0

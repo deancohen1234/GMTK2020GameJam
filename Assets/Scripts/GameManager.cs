@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public UIManager m_UIManager;
+    public GrassManager m_GrassManager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,10 @@ public class GameManager : MonoBehaviour
 
     void EndGame() 
     {
+        int grassCut = m_GrassManager.GetCutGrass();
+        int totalGrass = m_GrassManager.GetTotalGrass();
+
         Time.timeScale = 0;
-        m_UIManager.DisplayEndScreen();
+        m_UIManager.DisplayEndScreen(grassCut, totalGrass);
     }
 }

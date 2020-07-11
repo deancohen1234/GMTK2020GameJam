@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public float m_SmoothSpeed;
 
     public GameObject m_EndScreen;
+    public Text m_GrassCutText;
 
     private float m_EnergyBarStart = 1.0f;
     private float m_EnergyBarTarget = 1.0f;
@@ -33,8 +34,9 @@ public class UIManager : MonoBehaviour
         m_EnergyBarTarget = value;
     }
 
-    public void DisplayEndScreen() 
+    public void DisplayEndScreen(int grassCut, int totalGrass) 
     {
         m_EndScreen.SetActive(true);
+        m_GrassCutText.text = "You have cut " + grassCut + " out of " + totalGrass;
     }
 }
