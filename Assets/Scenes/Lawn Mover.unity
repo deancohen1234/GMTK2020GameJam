@@ -519,7 +519,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512457396}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &512457398
 Camera:
   m_ObjectHideFlags: 0
@@ -590,9 +590,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FollowTarget: {fileID: 1670565289}
-  m_CameraForwardPredictionDistance: 1
+  m_CameraForwardPredictionDistance: 4
   m_Offset: {x: 0, y: 20, z: -30}
-  m_SmoothSpeed: 10
+  m_SmoothSpeed: 8
 --- !u!1 &589221201
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TotalEnergy: 100
   m_BaseSpeed: 30
-  m_BaseTurnSpeed: 0.8
+  m_BaseTurnSpeed: 0.15
   m_TurnDampening: 100
   m_SpeedBoostSpeed: 40
 --- !u!114 &599105892
@@ -1744,6 +1744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1506227947}
+  - component: {fileID: 1506227948}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1779,6 +1780,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1506227948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506227946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a084a97de25c57a44a1822e618f6bcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Robot: {fileID: 599105891}
+  m_GrassMesh: {fileID: 738721038751157308, guid: a7e580bfc1a955d41bdf547152e3f3f2,
+    type: 3}
+  m_GrassMaterial: {fileID: 2100000, guid: 3d6fd727d64a8fb4e9669ae22cb3b42b, type: 2}
+  m_GrassPlane: {fileID: 1370894487}
+  m_StageSize: {x: 150, y: 75}
+  m_GrassDensity: 2379
 --- !u!1 &1583281327
 GameObject:
   m_ObjectHideFlags: 0
