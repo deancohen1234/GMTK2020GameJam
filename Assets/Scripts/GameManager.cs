@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager m_Singleton = null;
+
     public UIManager m_UIManager;
     public GrassManager m_GrassManager;
+
+    private void Awake()
+    {
+        if (m_Singleton == null) 
+        {
+            m_Singleton = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +32,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void EndGame() 
+    public void EndGame()
     {
         int grassCut = m_GrassManager.GetCutGrass();
         int totalGrass = m_GrassManager.GetTotalGrass();

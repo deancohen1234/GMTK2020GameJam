@@ -2501,6 +2501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Robot: {fileID: 599105891}
+  m_EnergyPerGrass: 0
   m_CutRadius: 10
   m_GrassMesh: {fileID: 738721038751157308, guid: a7e580bfc1a955d41bdf547152e3f3f2,
     type: 3}

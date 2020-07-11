@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class GrassManager : MonoBehaviour
 {
     public Robot m_Robot;
+    public float m_EnergyPerGrass = 0.5f;
     public float m_CutRadius = 10.0f;
 
     public Mesh m_GrassMesh;
@@ -140,6 +141,7 @@ public class GrassManager : MonoBehaviour
                 if (distance <= 10.0f)
                 {
                     m_AllGrassArray[i].m_IsCut = -1;
+                    m_Robot.AddEnergy(m_EnergyPerGrass);
                 }
             }
         }

@@ -116,6 +116,11 @@ public class Robot : MonoBehaviour
         UpdateUI();
     }
 
+    void OnDeath() 
+    {
+        GameManager.m_Singleton.EndGame();
+    }
+
     void CalculateEnergy() 
     {
         m_GameTimeKeeper += Time.deltaTime;
@@ -127,7 +132,18 @@ public class Robot : MonoBehaviour
 
             //update ui not every frame
             UpdateUI();
+
+            if (m_CurrentEnergy == 0)
+            {
+                OnDeath();
+            }
         }
+    }
+
+    public void AddEnergy(float addedEnergy) 
+    {
+        m_CurrentEnergy = Mathf.Clamp(m_CurrentEnergy + addedEnergy, 0, m_TotalEnergy);
+        UpdateUI();
     }
 
     void UpdateUI() 
