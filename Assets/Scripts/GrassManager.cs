@@ -205,8 +205,6 @@ public class GrassManager : MonoBehaviour
         float localXPos = point.x / (worldTextureWidthMax - worldTextureWidthMin);
         float localZPos = point.z / (worldTextureHeightMax - worldTextureHeightMin);
 
-        Debug.Log("Local: " + worldTextureHeightMax);
-
         localXPos = Mathf.Clamp01((localXPos + 1) / 2.0f); //convert to 0-1 scale 
         localZPos = Mathf.Clamp01((localZPos + 1) / 2.0f); //convert to 0-1 scale 
 
