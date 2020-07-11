@@ -8,10 +8,16 @@ public class UIManager : MonoBehaviour
     public Image m_EnergyBar;
     public float m_SmoothSpeed;
 
+    public GameObject m_EndScreen;
+
     private float m_EnergyBarStart = 1.0f;
     private float m_EnergyBarTarget = 1.0f;
     private float m_LerpTime;
 
+    private void Start()
+    {
+        m_EndScreen.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -25,5 +31,10 @@ public class UIManager : MonoBehaviour
         m_LerpTime = 0;
         m_EnergyBarStart = m_EnergyBarTarget;
         m_EnergyBarTarget = value;
+    }
+
+    public void DisplayEndScreen() 
+    {
+        m_EndScreen.SetActive(true);
     }
 }
