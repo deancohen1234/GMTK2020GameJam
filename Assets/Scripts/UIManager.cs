@@ -17,8 +17,6 @@ public class UIManager : MonoBehaviour
     {
         m_EnergyBar.fillAmount = Mathf.Lerp(m_EnergyBarStart, m_EnergyBarTarget, m_LerpTime);
         m_LerpTime = Mathf.Clamp01(m_LerpTime + Time.deltaTime * m_SmoothSpeed);
-
-        Debug.Log("LerpTime: " + m_LerpTime);
     }
 
     //run as update
