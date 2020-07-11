@@ -5,6 +5,7 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public UIManager m_UIHandler;
+    public CameraShake m_CameraShake;
 
     public float m_TotalEnergy = 100f;
     public float m_LossTickRate = 1.0f; //in seconds
@@ -22,6 +23,8 @@ public class Robot : MonoBehaviour
 
     private OverloadController m_OverloadController;
     private Rigidbody m_Rigidbody;
+
+
     private float m_GameTimeKeeper;
     private bool m_IsStunned;
 
@@ -66,16 +69,7 @@ public class Robot : MonoBehaviour
         Breakable breakable = collision.collider.gameObject.GetComponent<Breakable>();
         if (breakable) 
         {
-            StartCoroutine(StunPlayer(m_StunTime));
-            m_Rigidbody.velocity = Vector3.zero;
-
-            m_CurrentEnergy -= breakable.m_EnergyLost;
-            breakable.DestoryBreakable();
-
-            Vector3 direction = breakable.transform.position - transform.position;
-            m_Rigidbody.AddForce(-direction * 1000);
-
-            UpdateUI();
+            OnBreakableHit(breakable);
         }
     }
 
@@ -104,6 +98,22 @@ public class Robot : MonoBehaviour
     void OnSpeedBoostEnd() 
     {
         m_Speed = m_BaseSpeed;
+    }
+
+    void OnBreakableHit(Breakable breakable) 
+    {
+        StartCoroutine(StunPlayer(m_StunTime));
+        m_Rigidbody.velocity = Vector3.zero;
+
+        m_CurrentEnergy -= breakable.m_EnergyLost;
+        breakable.DestoryBreakable();
+
+        Vector3 direction = breakable.transform.position - transform.position;
+        m_Rigidbody.AddForce(-direction * 1000);
+
+        m_CameraShake.AddTrauma(0.8f);
+
+        UpdateUI();
     }
 
     void CalculateEnergy() 
