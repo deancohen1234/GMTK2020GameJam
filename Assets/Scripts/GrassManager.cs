@@ -2,32 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UIElements;
 
 public class GrassManager : MonoBehaviour
 {
+    [Header("Robot Properties")]
     public Robot m_Robot;
     public float m_EnergyPerGrass = 0.5f;
     public float m_CutRadius = 10.0f;
 
+    [Header("Scene References")]
     public Mesh m_GrassMesh;
     public Material m_GrassMaterial;
     public Transform m_GrassPlane;
+    public GameObject m_PlaneObject;
 
-    public Vector2 m_StageSize;
-    public int m_GrassDensity = 900;
+    [Header("Grass Properties")]
+    public Texture2D m_SplatMap;
     public int m_GrassDensityWidth = 30;
     public int m_GrassDensityHeight = 30;
 
-    public Texture2D m_SplatMap;
-    public GameObject m_PlaneObject;
-
     private Grass[] m_AllGrassArray;
-    private Matrix4x4[] m_MatrixArray;
-    private float[] m_CutGrassArray;
-    private Vector4[] m_ColorsArray;
-    private Vector3[] m_Positions;
 
     private MaterialPropertyBlock m_PropertyBlock;
 
@@ -41,46 +35,6 @@ public class GrassManager : MonoBehaviour
         m_PropertyBlock = new MaterialPropertyBlock();
     }
 
-    void InitGrass() 
-    {
-        //Debug.Log("Mesh Data: " + m_GrassMesh.vertices.Length + "\n" + m_GrassMesh.triangles.Length + "Normals" + m_GrassMesh.normals.Length);
-
-        m_Positions = new Vector3[m_GrassDensity];
-
-        for (int i = 0; i < m_GrassDensity; i++)
-        {
-            Vector3 randomPos = transform.position + new Vector3(Random.Range(-m_StageSize.x, m_StageSize.x), 0, Random.Range(-m_StageSize.y, m_StageSize.y));
-            m_Positions[i] = randomPos;
-        }
-
-        // Put positions in Matrix4x4 Array:
-        m_MatrixArray = new Matrix4x4[m_Positions.Length];
-        m_CutGrassArray = new float[m_Positions.Length];
-        m_ColorsArray = new Vector4[m_Positions.Length];
-
-        for (int i = 0; i < m_Positions.Length; i++)
-        {
-            m_MatrixArray[i].SetTRS(m_Positions[i], Quaternion.identity, Vector3.one);
-
-            float distance = Vector3.Distance(m_Positions[i], Vector3.zero);
-            if (distance <= 20.0f)
-            {
-                m_CutGrassArray[i] = -1f;
-                m_ColorsArray[i] = Color.red;
-            }
-            else
-            {
-                m_CutGrassArray[i] = 1f;
-                m_ColorsArray[i] = Color.blue;
-            }
-
-            //m_ColorsArray[i] = Color.HSVToRGB(Random.value, 1, .9f);
-
-        }
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         FillCutGrass();
@@ -100,10 +54,7 @@ public class GrassManager : MonoBehaviour
             m_PropertyBlock.SetFloatArray("_HideGrass", batchedArray);
 
             Graphics.DrawMeshInstanced(m_GrassMesh, 0, m_GrassMaterial, batchedMatrices, batchCount, m_PropertyBlock);
-
         }
-
-        //Graphics.DrawMeshInstanced(m_GrassMesh, 0, m_GrassMaterial, m_MatrixArray, m_MatrixArray.Length);
     }
 
     private Matrix4x4[] GetBatchedMatrices(int offset, int batchCount)

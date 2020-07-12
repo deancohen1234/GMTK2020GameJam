@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public EffectsManager m_EffectsManager;
 
     public float m_CountdownTime = 3.0f;
+    public float m_PenaltyScoreLoss = 10.0f;
 
     private GameState m_GameState = GameState.GameNotStarted;
 
     private float m_StartGameTime;
+    private float m_CurrentPenalty;
 
     private bool m_GameStarted;
     private bool m_CountdownRunning;
@@ -91,12 +93,17 @@ public class GameManager : MonoBehaviour
         int totalGrass = m_GrassManager.GetTotalGrass();
 
         Time.timeScale = 0;
-        m_UIManager.DisplayEndScreen(grassCut, totalGrass);
+        m_UIManager.DisplayEndScreen(grassCut - Mathf.FloorToInt(m_CurrentPenalty), totalGrass);
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Lawn Mover");
+    }
+
+    public void AddPenalty() 
+    {
+        m_CurrentPenalty += m_PenaltyScoreLoss;
     }
 }

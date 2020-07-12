@@ -7,11 +7,11 @@ public class Robot : MonoBehaviour
 {
     public CameraShake m_CameraShake;
 
+    [Header("Robot Properties")]
     public float m_TotalEnergy = 100f;
     public float m_LossTickRate = 1.0f; //in seconds
     public float m_EnergyLossPerTick = 10.0f;
     public float m_BreakableEnergyLoss = 10.0f;
-
     public float m_ReboundForce = 1200;
     public float m_StunTime = 1.0f; //in seconds
 
@@ -123,6 +123,8 @@ public class Robot : MonoBehaviour
         m_Rigidbody.AddForce(-direction * 1000);
 
         m_CameraShake.AddTrauma(0.8f);
+
+        GameManager.m_Singleton.AddPenalty();
 
         UpdateUI();
     }
