@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Lawn Mover.unity
+    guid: 87d0aa5816bb46a4295f65e63b7b3774
   m_configObjects: {}

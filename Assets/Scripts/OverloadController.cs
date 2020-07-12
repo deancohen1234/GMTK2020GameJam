@@ -5,12 +5,15 @@ using UnityEngine.Events;
 
 public class OverloadController : MonoBehaviour
 {
+    public ParticleSystem m_ZapSystem;
+
     public float m_SpeedBoostTimeMinTime = 10f;
     public float m_SpeedBoostTimeMaxTime = 20f;
     public float m_BoostTime = 3.0f;
 
     public UnityEvent m_OnSpeedBoostStart;
     public UnityEvent m_OnSpeedBoostEnd;
+
 
     private float m_LastSpeedBoostTime;
     private float m_SpeedBoostDelay;
@@ -36,6 +39,7 @@ public class OverloadController : MonoBehaviour
             }
         }
 
+        UpdateZapAmount();
     }
 
     private void StartSpeedBoost() 
@@ -53,5 +57,14 @@ public class OverloadController : MonoBehaviour
         m_IsBoosting = false;
 
         m_OnSpeedBoostEnd?.Invoke();
+    }
+
+    private void UpdateZapAmount() 
+    {
+        int particleEmmision = Mathf.CeilToInt(DeanUtils.Map(Time.time, m_LastSpeedBoostTime, m_LastSpeedBoostTime + m_SpeedBoostDelay, 0, 7));
+
+        ParticleSystem.EmissionModule module = m_ZapSystem.emission;
+
+        module.rateOverTime = particleEmmision;
     }
 }

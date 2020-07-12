@@ -187,7 +187,7 @@ public class Robot : MonoBehaviour
     IEnumerator StartDeathSequence(float stallTime) 
     {
         //stops double death
-        if (m_IsDead == true) 
+        if (m_IsDead == true)
         {
             yield return null;
         }
