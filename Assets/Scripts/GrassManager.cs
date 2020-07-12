@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class GrassManager : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class GrassManager : MonoBehaviour
     [Header("Scene References")]
     public Mesh m_GrassMesh;
     public Material m_GrassMaterial;
-    public Transform m_GrassPlane;
     public GameObject m_PlaneObject;
 
     [Header("Grass Properties")]
@@ -44,7 +44,7 @@ public class GrassManager : MonoBehaviour
         for (int i = 0; i < batches; ++i)
         {
             int batchCount = Mathf.Min(BATCH_MAX, m_AllGrassArray.Length - (BATCH_MAX * i));
-            int start = Mathf.Max(0, (i - 1) * BATCH_MAX);
+            int start = Mathf.Max(0, i * BATCH_MAX);
 
 
             float[] batchedArray = GetBatchedArray(start, batchCount);
@@ -99,7 +99,7 @@ public class GrassManager : MonoBehaviour
     }
 
     //march across plane and fill it with points
-    private void MarchPlane() 
+    private void MarchPlane()
     {
         MeshRenderer meshRenderer = m_PlaneObject.GetComponent<MeshRenderer>();
         Vector3 center = meshRenderer.bounds.center;
@@ -121,21 +121,27 @@ public class GrassManager : MonoBehaviour
                 float zPos = zBeginning + (zStep * j);
 
                 Vector3 position = new Vector3(xPos, m_PlaneObject.transform.position.y, zPos);
+
                 float isCut = ReadSplatMap(position, center, size);
 
                 Grass grass;
                 grass.m_Position = position;
                 grass.m_IsCut = isCut;
                 grass.m_Color = Color.green;
-                grass.m_Transform = Matrix4x4.TRS(position, Quaternion.identity, Vector3.one);
 
-                int grassIndex = (i * m_GrassDensityWidth) + j;
+                Matrix4x4 matrix = Matrix4x4.identity;
+                matrix.SetTRS(position, Quaternion.identity, Vector3.one);
+
+                grass.m_Transform = matrix;
+
+                int grassIndex = (i * m_GrassDensityHeight) + j;
+
                 m_AllGrassArray[grassIndex] = grass;
             }
         }
     }
 
-    //return true if we place a grass boi (white(1))
+    //return true if we place a grass boi (black(0))
     //float for the shader
     private float ReadSplatMap(Vector3 point, Vector3 worldCenter, Vector3 worldSize) 
     {
@@ -143,7 +149,7 @@ public class GrassManager : MonoBehaviour
 
         Color color = m_SplatMap.GetPixel(coords.x, coords.y);
 
-        if (color.r >= 0.9f)
+        if (color.r <= 0.1f)
         {
             return 1;
         }
@@ -155,11 +161,11 @@ public class GrassManager : MonoBehaviour
 
     private Vector2Int Map3DCoordToTextureCoord(Vector3 point, float worldTextureWidthMin, float worldTextureWidthMax, float worldTextureHeightMin, float worldTextureHeightMax)
     {
-        float localXPos = point.x / (worldTextureWidthMax - worldTextureWidthMin);
+        float localXPos = point.x / (worldTextureWidthMax - worldTextureWidthMin); //percentage
         float localZPos = point.z / (worldTextureHeightMax - worldTextureHeightMin);
 
-        localXPos = Mathf.Clamp01((localXPos + 1) / 2.0f); //convert to 0-1 scale 
-        localZPos = Mathf.Clamp01((localZPos + 1) / 2.0f); //convert to 0-1 scale 
+        localXPos = Mathf.Clamp01(localXPos + 0.5f); //convert to 0-1 scale
+        localZPos = Mathf.Clamp01(localZPos + 0.5f); //convert to 0-1 scale
 
         int xPixel = Mathf.FloorToInt(m_SplatMap.width * localXPos);
         int yPixel = Mathf.FloorToInt(m_SplatMap.height * localZPos);
