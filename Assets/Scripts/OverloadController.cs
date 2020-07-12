@@ -23,7 +23,7 @@ public class OverloadController : MonoBehaviour
     private void Start()
     {
         m_SpeedBoostDelay = Random.Range(m_SpeedBoostTimeMinTime, m_SpeedBoostTimeMaxTime);
-        m_LastSpeedBoostTime = 0;
+        m_LastSpeedBoostTime = Time.time;
     }
 
     private void Update()
