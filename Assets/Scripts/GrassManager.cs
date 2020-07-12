@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class GrassManager : MonoBehaviour
 {
     public Robot m_Robot;
+    public float m_EnergyPerGrass = 0.5f;
     public float m_CutRadius = 10.0f;
 
     public Mesh m_GrassMesh;
@@ -140,6 +141,7 @@ public class GrassManager : MonoBehaviour
                 if (distance <= 10.0f)
                 {
                     m_AllGrassArray[i].m_IsCut = -1;
+                    m_Robot.AddEnergy(m_EnergyPerGrass);
                 }
             }
         }
@@ -205,8 +207,6 @@ public class GrassManager : MonoBehaviour
         float localXPos = point.x / (worldTextureWidthMax - worldTextureWidthMin);
         float localZPos = point.z / (worldTextureHeightMax - worldTextureHeightMin);
 
-        Debug.Log("Local: " + worldTextureHeightMax);
-
         localXPos = Mathf.Clamp01((localXPos + 1) / 2.0f); //convert to 0-1 scale 
         localZPos = Mathf.Clamp01((localZPos + 1) / 2.0f); //convert to 0-1 scale 
 
@@ -216,6 +216,25 @@ public class GrassManager : MonoBehaviour
         Vector2Int pixelCoord = new Vector2Int(xPixel, yPixel);
 
         return pixelCoord;
+    }
+
+    public int GetCutGrass()
+    {
+        int cutGrass = 0;
+        for (int i = 0; i < m_AllGrassArray.Length; i++) 
+        {
+            if (m_AllGrassArray[i].m_IsCut == -1) 
+            {
+                cutGrass++;
+            }
+        }
+
+        return cutGrass;
+    }
+
+    public int GetTotalGrass() 
+    {
+        return m_AllGrassArray.Length;
     }
 }
 
