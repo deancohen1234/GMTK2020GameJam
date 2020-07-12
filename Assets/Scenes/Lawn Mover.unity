@@ -6581,14 +6581,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Robot: {fileID: 599105891}
   m_EnergyPerGrass: 0.5
-  m_CutRadius: 5
-  m_GrassMesh: {fileID: -2432090755550338912, guid: 68b9b94ac787af547a85ffa55d15606e,
+  m_CutRadius: 2.5
+  m_GrassMesh: {fileID: -2432090755550338912, guid: 7959a50dba2823d44a622ea30f3692cd,
     type: 3}
   m_GrassMaterial: {fileID: 2100000, guid: 3d6fd727d64a8fb4e9669ae22cb3b42b, type: 2}
   m_PlaneObject: {fileID: 995454482188147505}
-  m_SplatMap: {fileID: 2800000, guid: 3467943f4b037f84fb3a98c43c2ac987, type: 3}
-  m_GrassDensityWidth: 20
-  m_GrassDensityHeight: 20
+  m_SplatMap: {fileID: 2800000, guid: 2d476d1b5223673448873485df496d5d, type: 3}
+  m_GrassDensityWidth: 50
+  m_GrassDensityHeight: 50
 --- !u!4 &596135870
 Transform:
   m_ObjectHideFlags: 0
@@ -6683,9 +6683,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraShake: {fileID: 512457401}
+  m_BreakableSound: {fileID: 8300000, guid: 30b472445a39b874a8cbb25eacc293db, type: 3}
+  m_UnbreakableSound: {fileID: 8300000, guid: d55329b2a1e387e40bb782277b63832b, type: 3}
+  m_DeathSound: {fileID: 8300000, guid: 8d1fff5376a28a44db428243c28635f0, type: 3}
   m_TotalEnergy: 100
   m_LossTickRate: 1
-  m_EnergyLossPerTick: 2.5
+  m_EnergyLossPerTick: 7.5
   m_BreakableEnergyLoss: 10
   m_ReboundForce: 250
   m_StunTime: 0.2
@@ -12571,7 +12574,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3dbf00b57b84b5f48a3466171ecd9d38, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.505
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

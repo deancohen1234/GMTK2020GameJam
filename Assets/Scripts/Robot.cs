@@ -6,6 +6,9 @@ using UnityEngine;
 public class Robot : MonoBehaviour
 {
     public CameraShake m_CameraShake;
+    public AudioClip m_BreakableSound;
+    public AudioClip m_UnbreakableSound;
+    public AudioClip m_DeathSound;
 
     [Header("Robot Properties")]
     public float m_TotalEnergy = 100f;
@@ -119,6 +122,8 @@ public class Robot : MonoBehaviour
 
     void OnBreakableHit(Breakable breakable) 
     {
+        PlayAudio(m_BreakableSound);
+
         StartCoroutine(StunPlayer(m_StunTime));
         m_Rigidbody.velocity = Vector3.zero;
 
@@ -137,6 +142,8 @@ public class Robot : MonoBehaviour
 
     void OnUnbreakableHit(Unbreakable unbreakable) 
     {
+        PlayAudio(m_UnbreakableSound);
+
         if (unbreakable.m_IsInstaDeath) 
         {
             StartCoroutine(StartDeathSequence(2.0f));
@@ -204,6 +211,12 @@ public class Robot : MonoBehaviour
         }
     }
 
+    void PlayAudio(AudioClip clip) 
+    {
+        m_Source.clip = clip;
+        m_Source.Play();
+    }
+
     IEnumerator StunPlayer(float stunTime) 
     {
         m_IsStunned = true;
@@ -227,7 +240,7 @@ public class Robot : MonoBehaviour
         m_OverloadController.EndSpeedBoost();
         m_OverloadController.enabled = false;
 
-        m_Source.Play(); //play death sound
+        PlayAudio(m_DeathSound);
 
         //hide visual model without deactivating the entire robot
         HideModel();
