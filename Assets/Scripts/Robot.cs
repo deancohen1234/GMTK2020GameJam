@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
-    public UIManager m_UIHandler;
     public CameraShake m_CameraShake;
 
     public float m_TotalEnergy = 100f;
@@ -93,11 +92,13 @@ public class Robot : MonoBehaviour
     void OnSpeedBoostStart() 
     {
         m_Speed = m_SpeedBoostSpeed;
+        GameManager.m_Singleton.m_EffectsManager.ActivateEffect("AnimeLines");
     }
 
     void OnSpeedBoostEnd() 
     {
         m_Speed = m_BaseSpeed;
+        GameManager.m_Singleton.m_EffectsManager.DeActivateEffect("AnimeLines");
     }
 
     void OnBreakableHit(Breakable breakable) 
@@ -149,7 +150,7 @@ public class Robot : MonoBehaviour
     void UpdateUI() 
     {
         float normalizedEnergy = DeanUtils.Map(m_CurrentEnergy, 0, m_TotalEnergy, 0.0f, 1.0f);
-        m_UIHandler.SetEnergyBarValue(normalizedEnergy);
+        GameManager.m_Singleton.m_UIManager.SetEnergyBarValue(normalizedEnergy);
     }
 
     IEnumerator StunPlayer(float stunTime) 

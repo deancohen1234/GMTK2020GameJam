@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public UIManager m_UIManager;
     public GrassManager m_GrassManager;
+    public EffectsManager m_EffectsManager;
 
     private void Awake()
     {
