@@ -50,13 +50,17 @@ public class OverloadController : MonoBehaviour
 
         m_LastSpeedBoostTime = Time.time;
         m_SpeedBoostDelay = Random.Range(m_SpeedBoostTimeMinTime, m_SpeedBoostTimeMaxTime);
+
+        GameManager.m_Singleton.m_EffectsManager.ActivateEffect("FireAss");
     }
 
-    private void EndSpeedBoost() 
+    public void EndSpeedBoost() 
     {
         m_IsBoosting = false;
 
         m_OnSpeedBoostEnd?.Invoke();
+
+        GameManager.m_Singleton.m_EffectsManager.DeActivateEffect("FireAss");
     }
 
     private void UpdateZapAmount() 

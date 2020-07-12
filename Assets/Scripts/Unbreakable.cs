@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Unbreakable : MonoBehaviour
 {
+    public bool m_IsInstaDeath = true;
+    public float m_EnergyLost = 10.0f;
     // Start is called before the first frame update
     void Start()
     {

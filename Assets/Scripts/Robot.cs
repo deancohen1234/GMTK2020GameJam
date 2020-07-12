@@ -125,7 +125,7 @@ public class Robot : MonoBehaviour
         breakable.DestoryBreakable();
 
         Vector3 direction = breakable.transform.position - transform.position;
-        m_Rigidbody.AddForce(-direction * 1000);
+        m_Rigidbody.AddForce(-direction.normalized * 1000);
 
         m_CameraShake.AddTrauma(0.8f);
 
@@ -136,7 +136,26 @@ public class Robot : MonoBehaviour
 
     void OnUnbreakableHit(Unbreakable unbreakable) 
     {
-        StartCoroutine(StartDeathSequence(2.0f));
+        if (unbreakable.m_IsInstaDeath) 
+        {
+            StartCoroutine(StartDeathSequence(2.0f));
+        }
+        else
+        {
+            StartCoroutine(StunPlayer(m_StunTime));
+            m_Rigidbody.velocity = Vector3.zero;
+
+            m_CurrentEnergy -= unbreakable.m_EnergyLost;
+
+            Vector3 direction = unbreakable.transform.position - transform.position;
+            m_Rigidbody.AddForce(-direction.normalized * 1000);
+
+            m_CameraShake.AddTrauma(0.8f);
+
+            GameManager.m_Singleton.AddPenalty();
+
+            UpdateUI();
+        }
     }
 
     void OnDeath()
@@ -203,6 +222,9 @@ public class Robot : MonoBehaviour
         m_IsStunned = true;
         m_IsDead = true;
         m_Rigidbody.velocity = Vector3.zero;
+
+        GetComponent<OverloadController>().EndSpeedBoost();
+        GetComponent<OverloadController>().enabled = false;
 
         //hide visual model without deactivating the entire robot
         HideModel();
