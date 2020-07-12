@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class OverloadController : MonoBehaviour
 {
     public ParticleSystem m_ZapSystem;
+    public AudioSource m_Mower;
+    public Camera m_MainCamera;
 
     public float m_SpeedBoostTimeMinTime = 10f;
     public float m_SpeedBoostTimeMaxTime = 20f;
@@ -14,7 +16,6 @@ public class OverloadController : MonoBehaviour
     public UnityEvent m_OnSpeedBoostStart;
     public UnityEvent m_OnSpeedBoostEnd;
 
-
     private float m_LastSpeedBoostTime;
     private float m_SpeedBoostDelay;
     private bool m_IsBoosting;
@@ -22,6 +23,7 @@ public class OverloadController : MonoBehaviour
     private void Start()
     {
         m_SpeedBoostDelay = Random.Range(m_SpeedBoostTimeMinTime, m_SpeedBoostTimeMaxTime);
+        m_LastSpeedBoostTime = 0;
     }
 
     private void Update()
@@ -52,6 +54,10 @@ public class OverloadController : MonoBehaviour
         m_SpeedBoostDelay = Random.Range(m_SpeedBoostTimeMinTime, m_SpeedBoostTimeMaxTime);
 
         GameManager.m_Singleton.m_EffectsManager.ActivateEffect("FireAss");
+
+        m_Mower.pitch = 1.5f;
+
+        //m_MainCamera.fieldOfView = 70;
     }
 
     public void EndSpeedBoost() 
@@ -61,6 +67,10 @@ public class OverloadController : MonoBehaviour
         m_OnSpeedBoostEnd?.Invoke();
 
         GameManager.m_Singleton.m_EffectsManager.DeActivateEffect("FireAss");
+
+        m_Mower.pitch = 1.0f;
+
+        //m_MainCamera.fieldOfView = 60;
     }
 
     private void UpdateZapAmount() 

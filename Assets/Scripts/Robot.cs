@@ -23,7 +23,7 @@ public class Robot : MonoBehaviour
 
     private OverloadController m_OverloadController;
     private Rigidbody m_Rigidbody;
-
+    private AudioSource m_Source;
 
     private float m_GameTimeKeeper;
     private bool m_IsStunned;
@@ -36,6 +36,7 @@ public class Robot : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_OverloadController = GetComponent<OverloadController>();
+        m_Source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -215,7 +216,7 @@ public class Robot : MonoBehaviour
         //stops double death
         if (m_IsDead == true)
         {
-            yield return null;
+            yield break;
         }
 
         //Set bools and kill velocity so camera stops following robot
@@ -223,8 +224,10 @@ public class Robot : MonoBehaviour
         m_IsDead = true;
         m_Rigidbody.velocity = Vector3.zero;
 
-        GetComponent<OverloadController>().EndSpeedBoost();
-        GetComponent<OverloadController>().enabled = false;
+        m_OverloadController.EndSpeedBoost();
+        m_OverloadController.enabled = false;
+
+        m_Source.Play(); //play death sound
 
         //hide visual model without deactivating the entire robot
         HideModel();

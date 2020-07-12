@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         m_EndScreen.SetActive(false);
+        m_StartScreen.SetActive(true);
     }
     // Update is called once per frame
     void Update()
