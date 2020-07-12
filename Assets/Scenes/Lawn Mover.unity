@@ -6580,8 +6580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Robot: {fileID: 599105891}
-  m_EnergyPerGrass: 0.5
-  m_CutRadius: 2.5
+  m_EnergyPerGrass: 0.8
+  m_CutRadius: 1.5
   m_GrassMesh: {fileID: -2432090755550338912, guid: 7959a50dba2823d44a622ea30f3692cd,
     type: 3}
   m_GrassMaterial: {fileID: 2100000, guid: 3d6fd727d64a8fb4e9669ae22cb3b42b, type: 2}
@@ -12574,7 +12574,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3dbf00b57b84b5f48a3466171ecd9d38, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17836,7 +17836,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -19375,7 +19375,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -20192,7 +20192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsInstaDeath: 1
+  m_IsInstaDeath: 0
   m_EnergyLost: 10
 --- !u!4 &598010399095670523
 Transform:
@@ -20280,6 +20280,7 @@ GameObject:
   - component: {fileID: 6718467021805913067}
   - component: {fileID: 7391498623227852494}
   - component: {fileID: 8693192527614118108}
+  - component: {fileID: 765895203581634867}
   m_Layer: 0
   m_Name: Pond
   m_TagString: Untagged
@@ -20287,6 +20288,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &765895203581634867
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765895203581634866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6097084378698839028, guid: 40c076ccd341d28489b07a07e4fa967a, type: 3}
 --- !u!33 &849486552510890265
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20380,6 +20395,7 @@ GameObject:
   - component: {fileID: 3920330267762818278}
   - component: {fileID: 7956673158593752347}
   - component: {fileID: 1282355193478408969}
+  - component: {fileID: 1282355193478408970}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -20401,6 +20417,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2186430941476567602, guid: 40c076ccd341d28489b07a07e4fa967a, type: 3}
+--- !u!114 &1282355193478408970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282355193478408968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsInstaDeath: 0
+  m_EnergyLost: 10
 --- !u!4 &1321712399574242822
 Transform:
   m_ObjectHideFlags: 0
@@ -20720,6 +20750,7 @@ GameObject:
   - component: {fileID: 7234617581175493684}
   - component: {fileID: 7317428979741270140}
   - component: {fileID: 2915922768853758608}
+  - component: {fileID: 2019729477348901986}
   m_Layer: 0
   m_Name: Greenhouse
   m_TagString: Untagged
@@ -20727,6 +20758,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &2019729477348901986
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019729477348901985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6263630122077821187, guid: 40c076ccd341d28489b07a07e4fa967a, type: 3}
 --- !u!4 &2051442907244282705
 Transform:
   m_ObjectHideFlags: 0
@@ -21307,6 +21352,7 @@ GameObject:
   - component: {fileID: 6978142502365201743}
   - component: {fileID: 6372794452381382342}
   - component: {fileID: 3085215325628640604}
+  - component: {fileID: 2943610745776195218}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -21314,6 +21360,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &2943610745776195218
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2943610745776195217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4887216478360415443, guid: 40c076ccd341d28489b07a07e4fa967a, type: 3}
 --- !u!23 &3085215325628640604
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21775,7 +21835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsInstaDeath: 1
+  m_IsInstaDeath: 0
   m_EnergyLost: 10
 --- !u!33 &4136720263329307216
 MeshFilter:
@@ -22088,7 +22148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsInstaDeath: 1
+  m_IsInstaDeath: 0
   m_EnergyLost: 10
 --- !u!65 &5111582484247889094
 BoxCollider:
@@ -23021,7 +23081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsInstaDeath: 1
+  m_IsInstaDeath: 0
   m_EnergyLost: 10
 --- !u!4 &7061350128339127347
 Transform:
@@ -23961,7 +24021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38331b905671ca044bd2285ff7aa0d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsInstaDeath: 1
+  m_IsInstaDeath: 0
   m_EnergyLost: 10
 --- !u!114 &9199742974137594374
 MonoBehaviour:
