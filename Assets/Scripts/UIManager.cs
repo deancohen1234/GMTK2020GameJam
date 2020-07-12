@@ -38,10 +38,15 @@ public class UIManager : MonoBehaviour
         m_EnergyBarTarget = value;
     }
 
-    public void DisplayEndScreen(int grassCut, int totalGrass) 
+    public void DisplayEndScreen(int grassCut, int numberOfPenalties, int totalGrass) 
     {
+        int intPercentage = Mathf.FloorToInt((float)grassCut / (float)totalGrass * 100.0f);
+
         m_EndScreen.SetActive(true);
-        m_GrassCutText.text = "You have cut " + grassCut + " out of " + totalGrass;
+        string endScreenText = "Mission Synopsis:";
+        endScreenText += "\nPercentage of Grass Eliminated: " + intPercentage.ToString() + "%";
+        endScreenText += "\nUnexpected Casualties: " + numberOfPenalties.ToString();
+        m_GrassCutText.text = endScreenText;
     }
 
     public void SetCountdownTime(float time) 

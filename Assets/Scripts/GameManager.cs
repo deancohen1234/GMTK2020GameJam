@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private GameState m_GameState = GameState.GameNotStarted;
 
     private float m_StartGameTime;
-    private float m_CurrentPenalty;
+    private int m_CurrentPenalty;
 
     private bool m_GameStarted;
     private bool m_CountdownRunning;
@@ -45,10 +45,7 @@ public class GameManager : MonoBehaviour
         switch(m_GameState)
         {
             case GameState.GameNotStarted:
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    InitGame();
-                }
+                InitGame();
                 break;
 
             case GameState.CountdownRunning:
@@ -93,7 +90,8 @@ public class GameManager : MonoBehaviour
         int totalGrass = m_GrassManager.GetTotalGrass();
 
         Time.timeScale = 0;
-        m_UIManager.DisplayEndScreen(grassCut - Mathf.FloorToInt(m_CurrentPenalty), totalGrass);
+        Debug.Log("Cut Grass" + grassCut + totalGrass);
+        m_UIManager.DisplayEndScreen(grassCut, m_CurrentPenalty, totalGrass);
     }
 
     public void RestartGame()
@@ -104,6 +102,6 @@ public class GameManager : MonoBehaviour
 
     public void AddPenalty() 
     {
-        m_CurrentPenalty += m_PenaltyScoreLoss;
+        m_CurrentPenalty++;
     }
 }

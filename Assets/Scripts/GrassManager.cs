@@ -113,7 +113,7 @@ public class GrassManager : MonoBehaviour
 
         m_AllGrassArray = new Grass[m_GrassDensityWidth * m_GrassDensityHeight];
 
-        for (int i = 0; i < m_GrassDensityWidth; i++) 
+        for (int i = 0; i < m_GrassDensityWidth; i++)
         {
             for (int j = 0; j < m_GrassDensityHeight; j++) 
             {

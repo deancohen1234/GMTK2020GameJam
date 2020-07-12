@@ -57,6 +57,11 @@ public class Robot : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
+            StartCoroutine(StartDeathSequence(2.0f));
+        }
+
         CalculateEnergy();
     }
 
