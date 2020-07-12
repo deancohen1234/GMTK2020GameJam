@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class Robot : MonoBehaviour
@@ -26,6 +27,7 @@ public class Robot : MonoBehaviour
 
     private float m_GameTimeKeeper;
     private bool m_IsStunned;
+    private bool m_IsDead;
 
     private float m_Speed;
     private float m_CurrentEnergy;
@@ -69,6 +71,14 @@ public class Robot : MonoBehaviour
         if (breakable) 
         {
             OnBreakableHit(breakable);
+            return;
+        }
+
+        Unbreakable unbreakable = collision.collider.gameObject.GetComponent<Unbreakable>();
+        if (unbreakable)
+        {
+            OnUnbreakableHit(unbreakable);
+            return;
         }
     }
 
@@ -117,7 +127,12 @@ public class Robot : MonoBehaviour
         UpdateUI();
     }
 
-    void OnDeath() 
+    void OnUnbreakableHit(Unbreakable unbreakable) 
+    {
+        StartCoroutine(StartDeathSequence(2.0f));
+    }
+
+    void OnDeath()
     {
         GameManager.m_Singleton.EndGame();
     }
@@ -136,7 +151,7 @@ public class Robot : MonoBehaviour
 
             if (m_CurrentEnergy == 0)
             {
-                OnDeath();
+                StartCoroutine(StartDeathSequence(2.0f));
             }
         }
     }
@@ -153,10 +168,44 @@ public class Robot : MonoBehaviour
         GameManager.m_Singleton.m_UIManager.SetEnergyBarValue(normalizedEnergy);
     }
 
+    void HideModel() 
+    {
+        for (int i = 0; i < transform.childCount; i++) 
+        {
+            GameObject child = transform.GetChild(i).gameObject;
+            child.SetActive(false);
+        }
+    }
+
     IEnumerator StunPlayer(float stunTime) 
     {
         m_IsStunned = true;
         yield return new WaitForSeconds(stunTime);
         m_IsStunned = false;
+    }
+
+    IEnumerator StartDeathSequence(float stallTime) 
+    {
+        //stops double death
+        if (m_IsDead == true) 
+        {
+            yield return null;
+        }
+
+        //Set bools and kill velocity so camera stops following robot
+        m_IsStunned = true;
+        m_IsDead = true;
+        m_Rigidbody.velocity = Vector3.zero;
+
+        //hide visual model without deactivating the entire robot
+        HideModel();
+
+        //activate death particle system
+        GameManager.m_Singleton.m_EffectsManager.ActivateEffect("PlayerDeath", transform.position);
+
+        yield return new WaitForSeconds(stallTime);
+
+        OnDeath();
+
     }
 }
